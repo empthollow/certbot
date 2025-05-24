@@ -16,8 +16,9 @@ docker compose run --rm certbot
 0 3 * * 1 docker compose up --abort-on-container-exit certbot >> /var/log/certbot-renew.log 2>&1
 ```
 ## for the web server to read the certs these directories need to be mounted in the httpd yaml
+### assumes certbot is cloned into home directory
 ```bash
 volumes:
-      - ./conf:/etc/letsencrypt
-      - ./webroot:/var/www/certbot
+      - ~/certbot/conf:/etc/letsencrypt
+      - ~/certbot/webroot:/var/www/certbot
 ```
