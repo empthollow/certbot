@@ -1,0 +1,14 @@
+#!/bin/bash
+export $(grep -v '^#' .env | xargs) 
+#docker run --rm certbot/certbot certonly --webroot -w /var/www/certbot $(printf -- '-d %s ' ${CERTBOT_DOMAINS//,/ }) --email $CERTBOT_EMAIL --agree-tos --non-interactive
+
+docker run -it --rm --name certbot \
+  -v "./webroot:/var/www/certbot" \
+  -v "./certificates:/etc/letsencrypt" \
+  -v "./logs:/var/log/letsencrypt" certbot/certbot -v certonly \
+  --webroot \
+  --webroot-path=/var/www/certbot \
+  --email $CERTBOT_EMAIL \
+  --agree-tos \
+  --non-interactive \
+  $(printf -- '-d %s ' ${CERTBOT_DOMAINS//,/ })

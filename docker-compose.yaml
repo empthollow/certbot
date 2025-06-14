@@ -4,7 +4,7 @@ services:
   certbot:
     image: certbot/certbot
     volumes:
-      - ./conf:/etc/letsencrypt
+      - ./certificates:/etc/letsencrypt
       - ./webroot:/var/www/certbot
       - ./renew-certs.sh:/renew-certs.sh
     entrypoint: ["sh", "/renew-certs.sh"]
