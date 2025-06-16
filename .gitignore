@@ -1,10 +1,12 @@
 # Ignore everything in these directories
 certificates/*
 webroot/*
+logs/*
 
 # Explicitly include the .gitkeep file
 !certificates/.gitkeep
 !webroot/.gitkeep
+!logs/.gitkeep
 
 # Ignore files
 .env
