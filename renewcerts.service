@@ -1,0 +1,9 @@
+[Unit]
+Description=Certbot Renew Certs
+
+[Service]
+Type=oneshot
+WorkingDirectory=/home/shoestring/certbot
+ExecStart=/home/shoestring/certbot/renew-certs.sh
+User=shoestring
+

@@ -1,3 +1,11 @@
-CERTBOT_EMAIL=webmaster@peaberry.cloud
-CERTBOT_DOMAINS=peaberry.cloud,www.peaberry.cloud,linux.peaberry.cloud,www.linux.peaberry.cloud,empthollow.com,www.empthollow.com,gargoylefx.com,www.gargoylefx.com
+# Ignore everything in these directories
+certificates/*
+webroot/*
+
+# Explicitly include the .gitkeep file
+!certificates/.gitkeep
+!webroot/.gitkeep
+
+# Ignore files
+.env
 

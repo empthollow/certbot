@@ -1,0 +1,4 @@
+#!/bin/bash
+sudo cp renewcerts.service /etc/systemd/system/ 
+sudo cp renewcerts.timer /etc/systemd/system/
+sudo systemctl enable --now renewcerts.timer

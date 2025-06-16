@@ -1,0 +1,10 @@
+[Unit]
+Description=Run Certbot Renew Certs every 80 days
+
+[Timer]
+OnCalendar=*-*-* 00:00:00
+Persistent=true
+
+[Install]
+WantedBy=timers.target
+
