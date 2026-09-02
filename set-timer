@@ -1,4 +1,18 @@
 #!/bin/bash
-sudo cp renewcerts.service /etc/systemd/system/ 
-sudo cp renewcerts.timer /etc/systemd/system/
-sudo systemctl enable --now renewcerts.timer
+echo "Creating symlinks for renewcerts.service and renewcerts.timer"
+sudo ln -s $(pwd)/renewcerts.service /etc/systemd/system/renewcerts.service
+sudo ln -s $(pwd)/renewcerts.timer /etc/systemd/system/renewcerts.timer 
+set -euo pipefail
+UNIT="renewcerts.timer"
+# check if unit is active (running)
+if systemctl is-active --quiet "$UNIT"; then
+  echo "Unit '$UNIT' is running — reloading."
+  systemctl reload "$UNIT" || {
+    echo "reload failed; attempting restart."
+    systemctl restart "$UNIT"
+  }
+else
+  echo "Unit '$UNIT' is not running — enabling and starting now."
+  systemctl enable --now "$UNIT"
+fi
+echo "✅ Timer setup complete."

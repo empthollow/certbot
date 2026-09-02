@@ -2,6 +2,9 @@
 ```bash
 CERTBOT_EMAIL=you@example.com
 CERTBOT_DOMAINS=site1.com,www.site1.com,site2.com,www.site2.com,site3.com,www.site3.com,site4.com,www.site4.com
+CERT_CONTAINER=charlotte
+# nginx or apache
+HTTP_SERVER=nginx
 ```
 ## issue certificates first time
 ```bash

@@ -1,10 +1,14 @@
 [Unit]
-Description=Run Certbot Renew Certs every 80 days
+Description=Run Certbot Renew Certs Every 80 Days
 
 [Timer]
-OnCalendar=*-*-* 00:00:00
+# Remove OnCalendar if you want the 80-day logic to take precedence
+OnUnitActiveSec=80d
+# This ensures it runs immediately on boot if the last 80-day window was missed
 Persistent=true
+# Adds a bit of 'jitter' so you don't hit Let's Encrypt at the exact same second as everyone else
+RandomizedDelaySec=3600
+Unit=renewcerts.service
 
 [Install]
 WantedBy=timers.target
-
